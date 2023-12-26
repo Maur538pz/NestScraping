@@ -7,7 +7,7 @@ export class ScrapingService {
     const departmentMin = department.toLowerCase();
     const url = `https://www.pods.pe/mapa/lista.php?reg=${departmentMin}&ods=15&tem=undefined&tip=undefined`;
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: false,
     });
     const page = await browser.newPage();
     await page.goto(url);
