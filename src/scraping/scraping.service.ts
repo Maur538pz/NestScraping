@@ -13,10 +13,7 @@ export class ScrapingService {
         '--single-process',
         '--no-zygote',
       ],
-      executablePath:
-        process.env.NODE_ENV === 'production'
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
+      executablePath: 'google-chrome-stable',
     });
     const page = await browser.newPage();
     await page.goto(url);
