@@ -7,7 +7,16 @@ export class ScrapingService {
     const departmentMin = department.toLowerCase();
     const url = `https://www.pods.pe/mapa/lista.php?reg=${departmentMin}&ods=15&tem=undefined&tip=undefined`;
     const browser = await puppeteer.launch({
-      headless: 'new',
+      args: [
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+        '--single-process',
+        '--no-zygote',
+      ],
+      executablePath:
+        process.env.NODE_ENV === 'production'
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
     });
     const page = await browser.newPage();
     await page.goto(url);
